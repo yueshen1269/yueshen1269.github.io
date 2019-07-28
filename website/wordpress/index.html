@@ -95,14 +95,14 @@
 
 
   <meta name="description" content="域名 安装Wordpress 清除Dashbord头部和清除默认的插件 右上角howdy，到Users设置全名 左上角更改网站名称到settings-general site Title : Photography | film | Webdesign | Ferdly Korp Media，设置日期 settings-general-permalink Settings Post name a">
-<meta name="keywords" content="wordpress">
+<meta name="keywords" content="wordpress,child theme">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wordpress">
 <meta property="og:url" content="https://yueshen1269.github.io/website/wordpress/index.html">
 <meta property="og:site_name" content="YueBlog">
 <meta property="og:description" content="域名 安装Wordpress 清除Dashbord头部和清除默认的插件 右上角howdy，到Users设置全名 左上角更改网站名称到settings-general site Title : Photography | film | Webdesign | Ferdly Korp Media，设置日期 settings-general-permalink Settings Post name a">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-17T14:06:21.956Z">
+<meta property="og:updated_time" content="2019-07-28T12:09:01.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wordpress">
 <meta name="twitter:description" content="域名 安装Wordpress 清除Dashbord头部和清除默认的插件 右上角howdy，到Users设置全名 左上角更改网站名称到settings-general site Title : Photography | film | Webdesign | Ferdly Korp Media，设置日期 settings-general-permalink Settings Post name a">
@@ -365,13 +365,23 @@
                 
               
 
-              <time title="创建时间：2019-07-17 20:01:29 / 修改时间：22:06:21" itemprop="dateCreated datePublished" datetime="2019-07-17T20:01:29+08:00">2019-07-17</time>
+              <time title="创建时间：2019-07-17 20:01:29" itemprop="dateCreated datePublished" datetime="2019-07-17T20:01:29+08:00">2019-07-17</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-28 20:09:01" itemprop="dateModified" datetime="2019-07-28T20:09:01+08:00">2019-07-28</time>
+              </span>
             
           
 
@@ -411,7 +421,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1k</span>
+              <span title="本文字数">2k</span>
             </span>
           
 
@@ -423,7 +433,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">2 分钟</span>
+              <span title="阅读时长">3 分钟</span>
             </span>
           
 
@@ -471,6 +481,40 @@
 </ol>
 </li>
 </ol>
+<hr>
+<p>wordpress简单使用</p>
+<ol>
+<li>安装主题（oceanWP, astra)</li>
+<li>安装elementor</li>
+<li>多用</li>
+</ol>
+<hr>
+<hr>
+<p>wordpress好用的插件</p>
+<ul>
+<li>contact form 7</li>
+<li>WP-Mail-SMTP</li>
+</ul>
+<hr>
+<p>解决wordpress更改permlink时出现wordpressr任一页面都不能访问，403错误，no permission on this server的问题</p>
+<ol>
+<li>删除wordpress根目录（与wp-content、wp-includes同一级目录）下的<code>.htaccess</code><br>文件</li>
+<li>打开httpd.conf文件，查找<code>LoadModule rewrite_module modules/mod_rewrite.so</code>，如果不存在则添加，如果被注释掉就去掉前面的#，将<directory>下的<code>AllowOverride</code> 改为 All，重启appache</directory></li>
+<li>重新回到wordpress的dashbord，更改permlink后, .htaccess文件会被自动创建，打开文件，在<code>RewriteEngine On</code>添加<code>Options +FollowSymLinks</code>这一条语句，此时打开wordpress首页即可正常访问。</li>
+</ol>
+<hr>
+<p>wordpress 子主题(以oceanWP为例)</p>
+<ol>
+<li><p>在wp-content/themes 目录下新建子主题文件夹，如ocean-child</p>
+</li>
+<li><p>进入子主题文件夹ocean-child,新建style.css文件，在最上面的注释内写入主题名和父主题名</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Theme Name:   OceanWP Child</span></span><br><span class="line"><span class="comment">    Description:  OceanWP Child Theme</span></span><br><span class="line"><span class="comment">    Author:       Yue</span></span><br><span class="line"><span class="comment">    Template:     oceanwp</span></span><br><span class="line"><span class="comment">    Version:      1.0.0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如有需要新建其他文件，如functions.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">swiper</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( is_page( <span class="number">13</span> )) &#123;</span><br><span class="line">      wp_enqueue_script(<span class="string">"my-js1"</span>, <span class="string">"http://localhost/wordpress/my-js4.js"</span>, <span class="keyword">array</span>(<span class="string">"jquery"</span>), <span class="string">""</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  add_action(<span class="string">"wp_enqueue_scripts"</span>, <span class="string">"swiper"</span> );</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
       
     </div>
@@ -499,6 +543,8 @@
           
             <a href="/tags/wordpress/" rel="tag"># wordpress</a>
           
+            <a href="/tags/child-theme/" rel="tag"># child theme</a>
+          
         </div>
       
 
@@ -519,6 +565,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/wordpress-1/" rel="prev" title="wordpress">
+                wordpress <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -578,7 +628,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -640,7 +690,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -720,7 +772,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">13k</span>
   
 
   
@@ -729,7 +781,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
   
 </div>
 
