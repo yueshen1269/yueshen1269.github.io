@@ -94,18 +94,18 @@
 
 
 
-  <meta name="description" content="refs这几天使用了React的refs属性，简单总结一下作用：访问子元素或者子组件的DOM以及属性和方法流程：  在constructor构造函数中创建Refs实例 在render函数中的元素或者组件上使用ref属性分配创建的Refs实例 通过实例的current属性访问Refs,  ref.current  ref属性用作HTML元素时，React.createRef() 创建的 ref 接收">
-<meta name="keywords" content="work,ref">
+  <meta name="description" content="React中setState的使用1.基本用法// 形如：a: 1 -&amp;gt; a: 2this.setState({key: value}),将传入的对象浅合并到state中，如果存在key，则替换，否则新增// modal: {visible: false,message: “show this”},更新visible: truethis.setState(key: Object.assign">
+<meta name="keywords" content="-setState">
 <meta property="og:type" content="article">
-<meta property="og:title" content="work-19&#x2F;7&#x2F;12">
-<meta property="og:url" content="https://yueshen1269.github.io/work/work-19-7-12/index.html">
+<meta property="og:title" content="setState.md">
+<meta property="og:url" content="https://yueshen1269.github.io/react/setState-md/index.html">
 <meta property="og:site_name" content="YueBlog">
-<meta property="og:description" content="refs这几天使用了React的refs属性，简单总结一下作用：访问子元素或者子组件的DOM以及属性和方法流程：  在constructor构造函数中创建Refs实例 在render函数中的元素或者组件上使用ref属性分配创建的Refs实例 通过实例的current属性访问Refs,  ref.current  ref属性用作HTML元素时，React.createRef() 创建的 ref 接收">
+<meta property="og:description" content="React中setState的使用1.基本用法// 形如：a: 1 -&amp;gt; a: 2this.setState({key: value}),将传入的对象浅合并到state中，如果存在key，则替换，否则新增// modal: {visible: false,message: “show this”},更新visible: truethis.setState(key: Object.assign">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-12T12:12:35.333Z">
+<meta property="og:updated_time" content="2019-09-23T14:00:19.527Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="work-19&#x2F;7&#x2F;12">
-<meta name="twitter:description" content="refs这几天使用了React的refs属性，简单总结一下作用：访问子元素或者子组件的DOM以及属性和方法流程：  在constructor构造函数中创建Refs实例 在render函数中的元素或者组件上使用ref属性分配创建的Refs实例 通过实例的current属性访问Refs,  ref.current  ref属性用作HTML元素时，React.createRef() 创建的 ref 接收">
+<meta name="twitter:title" content="setState.md">
+<meta name="twitter:description" content="React中setState的使用1.基本用法// 形如：a: 1 -&amp;gt; a: 2this.setState({key: value}),将传入的对象浅合并到state中，如果存在key，则替换，否则新增// modal: {visible: false,message: “show this”},更新visible: truethis.setState(key: Object.assign">
 
 
 
@@ -113,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="https://yueshen1269.github.io/work/work-19-7-12/">
+  <link rel="canonical" href="https://yueshen1269.github.io/react/setState-md/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>work-19/7/12 | YueBlog</title>
+  <title>setState.md | YueBlog</title>
   
 
 
@@ -322,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/work/work-19-7-12/">
+    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/react/setState-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ShenYue">
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">work-19/7/12
+          <h1 class="post-title" itemprop="name headline">setState.md
 
               
             
@@ -365,7 +365,7 @@
                 
               
 
-              <time title="创建时间：2019-07-12 19:48:58 / 修改时间：20:12:35" itemprop="dateCreated datePublished" datetime="2019-07-12T19:48:58+08:00">2019-07-12</time>
+              <time title="创建时间：2019-09-23 21:43:30 / 修改时间：22:00:19" itemprop="dateCreated datePublished" datetime="2019-09-23T21:43:30+08:00">2019-09-23</time>
             </span>
           
 
@@ -384,7 +384,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">-react</span></a></span>
 
                 
                 
@@ -411,7 +411,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.6k</span>
+              <span title="本文字数">622</span>
             </span>
           
 
@@ -423,7 +423,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">3 分钟</span>
+              <span title="阅读时长">1 分钟</span>
             </span>
           
 
@@ -442,33 +442,14 @@
       
 
       
-        <h1 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h1><p>这几天使用了React的refs属性，简单总结一下<br>作用：访问子元素或者子组件的DOM以及属性和方法<br>流程：</p>
+        <h1 id="React中setState的使用"><a href="#React中setState的使用" class="headerlink" title="React中setState的使用"></a>React中setState的使用</h1><h2 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1.基本用法"></a>1.基本用法</h2><p>// 形如：a: 1 -&gt; a: 2<br>this.setState({key: value}),将传入的对象浅合并到state中，如果存在key，则替换，否则新增<br>// modal: {visible: false,message: “show this”},更新visible: true<br>this.setState(key: Object.assign({}, this.state.obj, {key: value}))<br>或者<br>this.setState(key: {…this.state.key,…{key: value}})</p>
+<h2 id="2-更新"><a href="#2-更新" class="headerlink" title="2.更新"></a>2.更新</h2><p>setState可能不会立即更新，如果需要拿到更新后的值</p>
 <ol>
-<li>在constructor构造函数中创建Refs实例</li>
-<li>在render函数中的元素或者组件上使用<code>ref</code>属性分配创建的Refs实例</li>
-<li>通过实例的current属性访问Refs,</li>
+<li>this.setState({key: newValue},() =&gt; {<br> console.log(this.state.key)}),传入一个回调函数</li>
+<li>在componentDidUpdate(prevProps, prevState) 生命周期内获取</li>
 </ol>
-<p>ref.current</p>
-<ul>
-<li>ref属性用作HTML元素时，React.createRef() 创建的 ref 接收底层 DOM 元素作为其 current 属性</li>
-<li>ref属性用于自定义class组件时，ref对象接受组件的挂载实例作为其current属性</li>
-</ul>
-<p>** 不能在函数组件上使用ref属性，因为他们没有实例 **</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">CustomTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="comment">// 创建一个 ref 来存储 textInput 的 DOM 元素</span></span><br><span class="line">      <span class="keyword">this</span>.textInput = React.createRef();</span><br><span class="line">      <span class="keyword">this</span>.focusTextInput = <span class="keyword">this</span>.focusTextInput.bind(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    focusTextInput() &#123;</span><br><span class="line">      <span class="comment">// 直接使用原生 API 使 text 输入框获得焦点</span></span><br><span class="line">      <span class="comment">// 注意：我们通过 "current" 来访问 DOM 节点</span></span><br><span class="line">      <span class="keyword">this</span>.textInput.current.focus();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;input</span><br><span class="line">            type=<span class="string">"text"</span></span><br><span class="line">            <span class="comment">// 分配Refs实例</span></span><br><span class="line">            ref=&#123;<span class="keyword">this</span>.textInput&#125; /&gt;</span><br><span class="line">          &lt;input</span><br><span class="line">            type=<span class="string">"button"</span></span><br><span class="line">            value=<span class="string">"Focus the text input"</span></span><br><span class="line">            onClick=&#123;<span class="keyword">this</span>.focusTextInput&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoFocusTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.textInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.textInput.current.focusTextInput();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="comment">// 仅在 CustomTextInput 声明为 class 时才有效</span></span><br><span class="line">      &lt;CustomTextInput ref=&#123;<span class="keyword">this</span>.textInput&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>通常不建议使用Refs在父组件中引用子组件的DOM节点，因为它会打破组件的封装，但他可以偶尔用于</p>
-<ol>
-<li>触发焦点</li>
-<li>测量子DOM节点的大小和位置</li>
-</ol>
-<p>向子组件天界ref不是一个理想的方案</p>
-<p>// todo</p>
-<ul>
-<li>[] ref转发</li>
-</ul>
+<h2 id="3-保证更新"><a href="#3-保证更新" class="headerlink" title="3.保证更新"></a>3.保证更新</h2><p>如果后续状态取决于当前状态，setState()第一个参数传入函数<br>this.setState((preState,preProps) =&gt; {<br>  return {key: value}<br>})</p>
+<h2 id="4-误区"><a href="#4-误区" class="headerlink" title="4.误区"></a>4.误区</h2><p>this.forceUpdate()并不能让setState()立即更新，只是重新渲染，但state的值不一定会被更新</p>
 
       
     </div>
@@ -495,9 +476,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/work/" rel="tag"># work</a>
-          
-            <a href="/tags/ref/" rel="tag"># ref</a>
+            <a href="/tags/setState/" rel="tag"># -setState</a>
           
         </div>
       
@@ -510,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/React/React-Context/" rel="next" title="React_Context">
-                <i class="fa fa-chevron-left"></i> React_Context
+              <a href="/uncategorized/兼容ie8/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -519,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/React/React项目实战流程/" rel="prev" title="React项目实战流程">
-                React项目实战流程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -735,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#refs"><span class="nav-number">1.</span> <span class="nav-text">refs</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React中setState的使用"><span class="nav-number">1.</span> <span class="nav-text">React中setState的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">1.基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-更新"><span class="nav-number">1.2.</span> <span class="nav-text">2.更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-保证更新"><span class="nav-number">1.3.</span> <span class="nav-text">3.保证更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-误区"><span class="nav-number">1.4.</span> <span class="nav-text">4.误区</span></a></li></ol></li></ol></div>
             
 
           </div>
