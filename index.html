@@ -321,6 +321,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/uncategorized/排序算法-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ShenYue">
+      <meta itemprop="description" content="yueshen个人博客，主要涉及前端知识与实践">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YueBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/uncategorized/排序算法-js/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-27 15:47:47 / 修改时间：16:21:38" itemprop="dateCreated datePublished" datetime="2019-10-27T15:47:47+08:00">2019-10-27</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">2 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><ol>
+<li><p>直接插入排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> InserSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;=arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i] &lt; arr[i<span class="number">-1</span>]) &#123;</span><br><span class="line">      arr[<span class="number">0</span>] = arr[i];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> j=i<span class="number">-1</span>; arr[j]&gt;arr[<span class="number">0</span>]; j--) &#123;</span><br><span class="line">        arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">      &#125;</span><br><span class="line">      arr[j+<span class="number">1</span>] = arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度： O(n^2)<br>空间复杂度： O(1)<br>稳定</p>
+</li>
+<li><p>折半插入排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> InsertSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>; i&lt;=arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i] &lt; arr[i<span class="number">-1</span>]) &#123;</span><br><span class="line">      arr[<span class="number">0</span>] = arr[i];</span><br><span class="line">      <span class="keyword">let</span> head = <span class="number">1</span>,</span><br><span class="line">          tail = i<span class="number">-1</span>;</span><br><span class="line">          mid = <span class="built_in">parseInt</span>((head + tail) / <span class="number">2</span>);</span><br><span class="line">       <span class="keyword">while</span>(head &lt;= tail) &#123;</span><br><span class="line">         <span class="keyword">if</span>(mid &lt; a[<span class="number">0</span>]) &#123;</span><br><span class="line">           head = mid + <span class="number">1</span>;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           tail = mid <span class="number">-1</span>;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">let</span> j=i<span class="number">-1</span>; j&gt;=tail+<span class="number">1</span>; j--) &#123;</span><br><span class="line">         arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">       &#125;</span><br><span class="line">       arr[tail+<span class="number">1</span>] = arr[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度： O(n^2)<br>空间复杂度： O(1)<br>稳定</p>
+</li>
+<li><p>希尔排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shellSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="built_in">parseInt</span>(arr.length/<span class="number">2</span>); i&gt;=<span class="number">1</span>; i=<span class="built_in">parseInt</span>(i/<span class="number">2</span>)) &#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> j=i+<span class="number">1</span>; j&lt;=arr.length; j++) &#123;</span><br><span class="line">     <span class="keyword">if</span>(arr[j] &lt; arr[j-i]) &#123;</span><br><span class="line">       arr[<span class="number">0</span>] = arr[j];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">let</span> k=j-i; k&gt;<span class="number">0</span>&amp;&amp;arr[k]&gt;arr[<span class="number">0</span>]; k-=i;) &#123;</span><br><span class="line">         arr[k+i] = arr[k];</span><br><span class="line">         arr[k] = a[<span class="number">0</span>];</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度： O(n^1.3 ~ n^2)<br>空间复杂度： O(1)<br>不稳定</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/react/setState-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2239,230 +2421,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/你不知道的JavaScript/作用域/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ShenYue">
-      <meta itemprop="description" content="yueshen个人博客，主要涉及前端知识与实践">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YueBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/你不知道的JavaScript/作用域/" class="post-title-link" itemprop="url">作用域</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-07 20:51:52 / 修改时间：21:48:06" itemprop="dateCreated datePublished" datetime="2019-07-07T20:51:52+08:00">2019-07-07</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/你不知道的JavaScript/" itemprop="url" rel="index"><span itemprop="name">你不知道的JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.3k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">2 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>作用域是一套存储变量，并且之后可以方便地找到这些变量的规则。</p>
-<h2 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h2><h3 id="传统编译语言流程"><a href="#传统编译语言流程" class="headerlink" title="传统编译语言流程:"></a>传统编译语言流程:</h3><ol>
-<li>分词/词法分析(Tokenizing/Lexing)：将字符组成的字符串分解成（对编程语言）有意义的代码块<br> <code>var a = 2</code> =&gt; <code>var</code>、<code>a</code>、<code>2</code>、<code>;</code></li>
-<li>解析/语法分析(Parsing): 将词法单元流（数组）转化成一个由元素逐级嵌套所组成的代表程序语法结构的树，这个树被称为“抽象语法树”（Abstract Syntax Tree，AST）</li>
-<li>代码生成： 将AST转换为可执行代码块的过程被称为代码生成，主要是将AST转换为一组机器指令</li>
-</ol>
-<p>JavaScript的任何代码在执行器都要进行编译（通常在执行前）</p>
-<h2 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h2><ul>
-<li>引擎：从头到尾负责整个JavaScript程序的编译及执行过程</li>
-<li>编译器：引擎的好朋友之一，负责语法分析及代码生成等脏活累活。</li>
-<li>作用域：引擎的另一位好朋友，负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。（我的理解：作用域有多个层级，每一个作用域管理自己的旗下变量，并严格限制其他变量对自己旗下变量的访问。低层级的作用于可以访问上级作用域管理的变量，高层级不能访问低层级，兄弟层级之间也不不能访问。）</li>
-</ul>
-<p><code>var a = 2</code></p>
-<ol>
-<li><code>var a</code>: 编译器会询问作用域是否已有一个该名称的变量存在于同一个作用域，存在则忽略该声明,否则会要求在当前作用域内生命一个新变量，并命名为a</li>
-<li>接下来编译器会为引擎生成运行时所需代码，这些代码被用来处理<code>a=2</code>这个赋值操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫做a的变量，存在则使用这个变量，否则会继续查找该变量。</li>
-</ol>
-<h3 id="变量的LHS和LRS查询"><a href="#变量的LHS和LRS查询" class="headerlink" title="变量的LHS和LRS查询"></a>变量的LHS和LRS查询</h3><p>LHS:</p>
-<ol>
-<li>变量出现在左边进行LHS查询</li>
-<li>LHS查询试图找到变量的容器本身</li>
-<li>赋值操作的目标是谁（LHS）</li>
-</ol>
-<p>RHS:</p>
-<ol>
-<li>变量出现在右边进行RHS查询，并不是右侧，而是非左侧</li>
-<li>RHS查询相当于查询某个变量的值，</li>
-<li>谁是赋值操作的源头（RHS）</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
-<p>其中：LHS有</p>
-<ul>
-<li>a = 2</li>
-</ul>
-<p>RHS:</p>
-<ul>
-<li>调用foo函数是查询foo</li>
-<li>输出a时查询a</li>
-<li>查询console</li>
-</ul>
-<p>个人理解：LHS和RHS区别：LHS查询只关心在作用域内有没有声明这个变量，不关心它的值；RHS不仅要关心是否声明，还要关心变量的值是否存在，类型等。随便找个杯子喝点水、以及高脚杯内的红酒，咖啡杯内的咖啡，保温杯里的枸杞。</p>
-<h2 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h2><p>在当前作用域未找到，则会继续向上层作用域寻找，直到达到全局作用域，查找结束。</p>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>LHS未找到在非严格模式下不会报ReferenceError，会自动在全局作用域创建一个这样的变量，<br>RHS未找到会报ReferenceError，找到了但类型不匹配，如一个number类型的变量去调用函数的方法，报TypeError。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2509,7 +2467,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2669,7 +2627,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">25k</span>
+    <span title="站点总字数">26k</span>
   
 
   
@@ -2678,7 +2636,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
   
 </div>
 
