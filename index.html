@@ -321,6 +321,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/redux/redux相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ShenYue">
+      <meta itemprop="description" content="yueshen个人博客，主要涉及前端知识与实践">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YueBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/redux/redux相关/" class="post-title-link" itemprop="url">redux相关</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-04 19:44:26 / 修改时间：20:36:07" itemprop="dateCreated datePublished" datetime="2019-12-04T19:44:26+08:00">2019-12-04</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/redux/" itemprop="url" rel="index"><span itemprop="name">-redux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.5k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="redux的一点理解"><a href="#redux的一点理解" class="headerlink" title="redux的一点理解"></a>redux的一点理解</h1><ol>
+<li><p>applyMiddleware 函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params">...middlewares</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">createStore</span>) =&gt;</span> <span class="function">(<span class="params">reducer, preloadedState, enhancer</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> store = createStore(reducer, preloadedState, enhancer)</span><br><span class="line">    <span class="keyword">let</span> dispatch = store.dispatch</span><br><span class="line">    <span class="keyword">let</span> chain = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> middlewareAPI = &#123;</span><br><span class="line">      getState: store.getState,</span><br><span class="line">      dispatch: <span class="function">(<span class="params">action</span>) =&gt;</span> dispatch(action)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// middleware(store) 返回函数： next =&gt; action =&gt; &#123;&#125;</span></span><br><span class="line">    <span class="comment">// 第一步：middleware函数第一个参数：store</span></span><br><span class="line">    chain = middlewares.map(<span class="function"><span class="params">middleware</span> =&gt;</span> middleware(middlewareAPI))</span><br><span class="line"></span><br><span class="line">    <span class="comment">// compoese作用：将几个函数实现的功能合并成一个函数并返回</span></span><br><span class="line">    <span class="comment">// compose(...chain) 返回的函数的格式和chain数组中函数的格式一样</span></span><br><span class="line">    <span class="comment">// next函数初始值为 store.dispatch</span></span><br><span class="line">    <span class="comment">// 第三步：middleware函数第二个参数：action，经过层层包装的dispatch和原来一样，接受一个action</span></span><br><span class="line">    dispatch = compose(...chain)(store.dispatch)</span><br><span class="line">    <span class="comment">// 返回经过包装后的dispatch</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      ...store,</span><br><span class="line">      dispatch</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...funcs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (funcs.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">arg</span> =&gt;</span> arg</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (funcs.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> funcs[<span class="number">0</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// a,b等funs数组中函数形式： next =&gt; action =&gt; &#123;&#125;</span></span><br><span class="line">  <span class="comment">// next是经过包装后的dispatch,第一次要手动传入(store.dispatch)</span></span><br><span class="line">  <span class="comment">// a、b函数都return一个新的函数 action =&gt; &#123;&#125;，返回的结果又充当下一个函数的参数，然后继续返回next函数</span></span><br><span class="line">  <span class="comment">// 第二步：middleware函数第二个参数：next（接受next，返回next，即包装后的dispatch)</span></span><br><span class="line">  <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> a(b(...args)))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对异步action的理解</p>
+<blockquote>
+<p>可以看下<a href="https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559" title="How to dispatch a Redux action with a timeout?" target="_blank" rel="noopener">stackoverflow上大神的理解</a></p>
+</blockquote>
+</li>
+</ol>
+<p>总的来说：要真正懂得为什么要使用某个工具，它帮助解决了什么问题，以及合理考虑自己的需求，不要人云亦云，选择最合适的那一种方法。</p>
+<p>。。。待续。。。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/react/axios-res-interceptor-push/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2286,213 +2478,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yueshen1269.github.io/work/work-19-7-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ShenYue">
-      <meta itemprop="description" content="yueshen个人博客，主要涉及前端知识与实践">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YueBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/work/work-19-7-12/" class="post-title-link" itemprop="url">work-19/7/12</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 19:48:58 / 修改时间：20:12:35" itemprop="dateCreated datePublished" datetime="2019-07-12T19:48:58+08:00">2019-07-12</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.6k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">3 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h1><p>这几天使用了React的refs属性，简单总结一下<br>作用：访问子元素或者子组件的DOM以及属性和方法<br>流程：</p>
-<ol>
-<li>在constructor构造函数中创建Refs实例</li>
-<li>在render函数中的元素或者组件上使用<code>ref</code>属性分配创建的Refs实例</li>
-<li>通过实例的current属性访问Refs,</li>
-</ol>
-<p>ref.current</p>
-<ul>
-<li>ref属性用作HTML元素时，React.createRef() 创建的 ref 接收底层 DOM 元素作为其 current 属性</li>
-<li>ref属性用于自定义class组件时，ref对象接受组件的挂载实例作为其current属性</li>
-</ul>
-<p>** 不能在函数组件上使用ref属性，因为他们没有实例 **</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">CustomTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="comment">// 创建一个 ref 来存储 textInput 的 DOM 元素</span></span><br><span class="line">      <span class="keyword">this</span>.textInput = React.createRef();</span><br><span class="line">      <span class="keyword">this</span>.focusTextInput = <span class="keyword">this</span>.focusTextInput.bind(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    focusTextInput() &#123;</span><br><span class="line">      <span class="comment">// 直接使用原生 API 使 text 输入框获得焦点</span></span><br><span class="line">      <span class="comment">// 注意：我们通过 "current" 来访问 DOM 节点</span></span><br><span class="line">      <span class="keyword">this</span>.textInput.current.focus();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;input</span><br><span class="line">            type=<span class="string">"text"</span></span><br><span class="line">            <span class="comment">// 分配Refs实例</span></span><br><span class="line">            ref=&#123;<span class="keyword">this</span>.textInput&#125; /&gt;</span><br><span class="line">          &lt;input</span><br><span class="line">            type=<span class="string">"button"</span></span><br><span class="line">            value=<span class="string">"Focus the text input"</span></span><br><span class="line">            onClick=&#123;<span class="keyword">this</span>.focusTextInput&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoFocusTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.textInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.textInput.current.focusTextInput();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="comment">// 仅在 CustomTextInput 声明为 class 时才有效</span></span><br><span class="line">      &lt;CustomTextInput ref=&#123;<span class="keyword">this</span>.textInput&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>通常不建议使用Refs在父组件中引用子组件的DOM节点，因为它会打破组件的封装，但他可以偶尔用于</p>
-<ol>
-<li>触发焦点</li>
-<li>测量子DOM节点的大小和位置</li>
-</ol>
-<p>向子组件天界ref不是一个理想的方案</p>
-<p>// todo</p>
-<ul>
-<li>[] ref转发</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2539,7 +2524,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2570,7 +2555,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   
                 </div>
@@ -2633,7 +2620,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -2713,7 +2702,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">31k</span>
+    <span title="站点总字数">32k</span>
   
 
   
@@ -2722,7 +2711,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">52 分钟</span>
+    <span title="站点阅读时长">54 分钟</span>
   
 </div>
 
